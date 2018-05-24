@@ -1,13 +1,14 @@
 {
   "name": "bf-improved",
   "version": "0.0.1",
-  "description": "BFM is a JS based language that makes brainfuck development easier",
+  "description": "BFM is a JS based language that makes brainfuck development easier (+ BF & BF2C CLI)",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "bf-improved": "./src/cli.js"
+    "bf-improved": "./src/cli.js",
+    "bfm": "./src/cli.js"
   },
   "keywords": [
     "brainfuck",

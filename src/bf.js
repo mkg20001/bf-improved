@@ -3,10 +3,10 @@
 function lexer (a) {
   let i = 0
   let o = []
-  while(a.length > i) {
+  while (a.length > i) {
     let c = a[i]
     i++
-    switch(c) {
+    switch (c) {
       case '+':
       case '-':
         o.push({type: 'arth', c})
@@ -30,19 +30,18 @@ function lexer (a) {
 
 function recursor (t) {
   let i = 0
-  let o = []
   let ai = {'+': 1, '-': -1, '>': 1, '<': -1, '.': 'print', ',': 'read', '[': true, ']': false}
 
-  function walk() {
+  function walk () {
     let c = t[i]
     i++
-    switch(c.type) {
+    switch (c.type) {
       case 'arth': case 'mem': case 'io': return {type: c.type, params: ai[c.c]}
       case 'loop': {
         if (ai[c.c]) {
           let next
           let p = []
-          while((next = walk())) {
+          while ((next = walk())) {
             p.push(next)
           }
           return {type: 'loop', params: p}
@@ -55,7 +54,7 @@ function recursor (t) {
   }
 
   let ast = []
-  while(t.length > i) {
+  while (t.length > i) {
     ast.push(walk())
   }
   return ast
@@ -71,15 +70,15 @@ function executor (a, mem) {
   const read = () => set(0) // TODO: add
   const IO = {print, read}
 
-  function d(a) {
+  function d (a) {
     if (process.env.DEBUG_BF) console.log(a)
     a.forEach(op => {
-      switch(op.type) {
+      switch (op.type) {
         case 'arth': return mod(op.params)
         case 'mem': return (point = point + op.params)
         case 'io': return IO[op.params]()
         case 'loop': {
-          while(ac()) d(op.params)
+          while (ac()) d(op.params)
           return
         }
       }

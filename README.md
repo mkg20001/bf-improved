@@ -4,7 +4,9 @@ Brainfuck Improved
 
 ## How
 
-BFM is a JS based language that makes brainfuck development easier.
+BFM is a JS based language that makes brainfuck development easier
+
+Additionally this CLI features a brainfuck runtime and a brainfuck2c compiler
 
 ## Examples
 
@@ -17,6 +19,17 @@ whileFnc(0, () => { // loop is useless, just here for demo
 //  strprint('\n', 30)
   clear(0) // clear reg 0 to end loop
 })
+```
+
+## Usage
+
+```sh
+$ npm i -g bf-improved # install the CLI
+$ bfm bfm example.bfm example.bf # compile BrainFuck Improved to Brainfuck
+$ bfm bf example.bf # execute Brainfuck
+$ bfm bftoc example.bf example.c # generate C code from BrainFuck
+$ gcc example.c -o example # generate Executable
+$ ./example # launch
 ```
 
 ## Syntax
@@ -62,8 +75,7 @@ Optionally prints `len` next cells too
 Writes string into memory then prints it
 > Example: `strprint('Hello', 20)` => `str('Hello', 20); print(20, 25);`
 
-### `numprint(reg, storeReg)`
+### `numprint(reg, storeReg)` **TODO**
 
 Prints the ASCII value of the number stored at reg using storeReg.
 Note: There must be at least 10 free cells after storeReg to avoid corruption for big numbers
-

@@ -2,13 +2,13 @@
 
 const vm = require('vm')
 
-function Compile(code, debug) {
+function Compile (code, debug) {
   let curReg = 0
   let out = ''
 
   let bfEscape = [[/\./g, '•'], [/[+,><\[\]-]/g, '']]
 
-  function processStack(stack) {
+  function processStack (stack) {
     let s = stack.split('\n').slice(2).map(l => {
       let [fnc, loc] = l.substr(7).split(' (')
       let file = ''
@@ -33,7 +33,7 @@ function Compile(code, debug) {
     })
   }
 
-  function getDebug() {
+  function getDebug () {
     let stack = processStack(new Error('.').stack)
     let out = stack.map(s => s.fnc + ' (' + s.file + ':' + s.loc + ')').join(' « ') + '\n'
     bfEscape.forEach(e => (out = out.replace(...e)))
@@ -79,7 +79,7 @@ function Compile(code, debug) {
       if (!len) len = 1
       fncs.bf('.', 'print ' + reg)
       len--
-      while(len--) {
+      while (len--) {
         fncs.goto(++reg)
         fncs.bf('.', 'print ' + reg)
       }
