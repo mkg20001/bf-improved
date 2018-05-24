@@ -11,16 +11,33 @@ Additionally this CLI features a brainfuck runtime and a brainfuck2c compiler
 ## Examples
 
 ```js
-
 strprint('Hello World!\n', 0) // write string to memory and print it
 
-set(0, 9)             // set register 0 (aka "counter") to 9
+set(0, 10)            // set register 0 (aka "counter") to 10
 str('Count: 9\n', 1)  // write string to memory from reg 1 to reg 9 (1 + 8)
 whileFnc(0, () => {   // loop until reg 0 is set to 0
   print(1, 9)         // print reg 1 to reg 9 as ascii string
   mod(8, -1)          // decrement ASCII value of the number in the string
   mod(0, -1)          // decrement "counter" by 1
 })
+
+/*
+
+Prints:
+
+Hello World!
+Count: 9
+Count: 8
+Count: 7
+Count: 6
+Count: 5
+Count: 4
+Count: 3
+Count: 2
+Count: 1
+Count: 0
+
+*/
 ```
 
 ## Usage
