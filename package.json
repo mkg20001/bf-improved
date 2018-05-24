@@ -16,5 +16,14 @@
   "license": "MIT",
   "dependencies": {
     "yargs": "^11.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkg20001/bf-improved.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mkg20001/bf-improved/issues"
+  },
+  "homepage": "https://github.com/mkg20001/bf-improved#readme"
 }
