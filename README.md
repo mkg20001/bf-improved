@@ -11,12 +11,11 @@ BFM is a JS based language that makes brainfuck development easier.
 ```js
 set(0, 1)
 whileFnc(0, () => { // loop is useless, just here for demo
-  strprint('Hello World\n', 1)
-  strprint('First ASCII char: ', 30)
-  numprint(1)
-  mod(30, 1)
-  strprint('\n', 30)
-  clear(0)
+  strprint('Hello World!\n', 1)
+//  strprint('First ASCII char: ', 30) // numprint is TODO
+//  numprint(1)
+//  strprint('\n', 30)
+  clear(0) // clear reg 0 to end loop
 })
 ```
 
@@ -24,7 +23,7 @@ whileFnc(0, () => { // loop is useless, just here for demo
 
 ### `goto(reg)`
 
-Generates bf code to move from cur reg to new reg. If arg is NaN then does nothing.
+Generates bf code to move from cur reg to new reg. Throws if arg is not a valid number
 > Example: `goto(1); goto(20);` => `>>>>>>>>>>>>>>>>>>>>`
 
 ### `mod(reg, val)`
@@ -52,15 +51,16 @@ Brainfuck native loop. Calls goto before and after code.
 Sets all registers from `reg` to `reg + str.length` to the ASCII values of str
 > Example: `str('H', 20);` => `goto(20); set(20, 72);`
 
-### `print(reg, len, lenReg)`
+### `print(reg, len)`
 
 Prints char at reg (`.`)
-Optionally prints next cells using len (loop requires lenReg)
+Optionally prints `len` next cells too
+> Example: `print(0, 3);` => `.>.>.>.`
 
 ### `strprint(str, reg)`
 
-Writes string into memory then prints it. (Note: If str.len > 1 then str.len + 1 will be the value of lenReg)
-> Example: `strprint('Hello', 20)` => `str('Hello', 20); print(20, 25, 26);`
+Writes string into memory then prints it
+> Example: `strprint('Hello', 20)` => `str('Hello', 20); print(20, 25);`
 
 ### `numprint(reg, storeReg)`
 
