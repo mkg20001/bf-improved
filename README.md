@@ -32,7 +32,7 @@ Generates bf code to move from cur reg to new reg. If arg is NaN then does nothi
 Modifies the value of a reg
 > Example: `mod(20, 2);` => `goto(20); bf('++');`
 
-### clear(reg)
+### `clear(reg)`
 
 Clears a registers value
 > Alias: `clear(reg);` => `goto(reg); bf('[-]');`
