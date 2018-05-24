@@ -6,10 +6,10 @@ function Compile (code, debug) {
   let curReg = 0
   let out = ''
 
-  let bfEscape = [[/\./g, '•'], [/[+,><\[\]-]/g, '']]
+  let bfEscape = [[/\./g, '•'], [/-/g, '—'], [/[,\[\]><-]/g, '']]
 
   function processStack (stack) {
-    let s = stack.split('\n').slice(2).map(l => {
+    let s = stack.split('\n').slice(3).map(l => {
       let [fnc, loc] = l.substr(7).split(' (')
       let file = ''
       if (loc) {
@@ -36,12 +36,16 @@ function Compile (code, debug) {
   function getDebug () {
     let stack = processStack(new Error('.').stack)
     let out = stack.map(s => s.fnc + ' (' + s.file + ':' + s.loc + ')').join(' « ') + '\n'
+    return out
+  }
+
+  function escape (out) {
     bfEscape.forEach(e => (out = out.replace(...e)))
     return out
   }
 
   const fncs = {
-    bf: (s, hint) => (out += s + (debug ? ' // ' + (hint ? hint + ' @ ' : '') + getDebug() : '')),
+    bf: (s, hint) => (out += s + (debug ? escape(' // ' + (hint ? hint + ' @ ' : '') + getDebug()) : '')),
     goto: reg => {
       if (typeof reg !== 'number' || isNaN(reg)) throw new Error('GOTO failed')
       let d = reg - curReg

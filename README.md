@@ -11,13 +11,15 @@ Additionally this CLI features a brainfuck runtime and a brainfuck2c compiler
 ## Examples
 
 ```js
-set(0, 1)
-whileFnc(0, () => { // loop is useless, just here for demo
-  strprint('Hello World!\n', 1)
-//  strprint('First ASCII char: ', 30) // numprint is TODO
-//  numprint(1)
-//  strprint('\n', 30)
-  clear(0) // clear reg 0 to end loop
+
+strprint('Hello World!\n', 0) // write string to memory and print it
+
+set(0, 9)             // set register 0 (aka "counter") to 9
+str('Count: 9\n', 1)  // write string to memory from reg 1 to reg 9 (1 + 8)
+whileFnc(0, () => {   // loop until reg 0 is set to 0
+  print(1, 9)         // print reg 1 to reg 9 as ascii string
+  mod(8, -1)          // decrement ASCII value of the number in the string
+  mod(0, -1)          // decrement "counter" by 1
 })
 ```
 
