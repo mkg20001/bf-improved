@@ -1,6 +1,6 @@
 {
   "name": "bf-improved",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "BFM is a JS based language that makes brainfuck development easier (+ BF & BF2C CLI)",
   "main": "src/index.js",
   "scripts": {
